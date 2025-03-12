@@ -27,76 +27,79 @@ function gameObject() {
 
 //console.log(gameObject());
 
+const game = gameObject();
+
+
 function numPointsScored(playerName) {
-    let game = gameObject();
+    //let game = gameObject();
     for (let team in game) {
         if (game[team].players[playerName]) {
             return game[team].players[playerName].points;
         }
     }
-    return null;
+    return "Player not found";
 }
 console.log(numPointsScored('Jeff Adrien'));
 
 
 function shoeSize(playerName) {
-    let game = gameObject();
+    //let game = gameObject();
     for (let team in game) {
         if (game[team].players[playerName]) {
             return game[team].players[playerName].shoe;
         }
     }
-    return null;
+    return "Player not found";
 }
 console.log(shoeSize("Brendan Haywood"));
 
 
 function teamColors(teamName) {
-    let game = gameObject();
+    //let game = gameObject();
     for (let team in game) {
         if (game[team].teamName === teamName) {
             return game[team].colors;
         }
     }
-    return null;
+    return "Team not found";
 }
 console.log(teamColors("Charlotte Hornets"));
 
 
 function teamNames() {
-    let game = gameObject();
+    //let game = gameObject();
     return [game.home.teamName, game.away.teamName];
 }
-console.log(teamNames("Brooklyn Nets"));
+console.log(teamNames());
 
 
 function playerNumbers(teamName) {
-    let game = gameObject();
+    //let game = gameObject();
     for (let team in game) {
         if (game[team].teamName === teamName) {
             return Object.values(game[team].players).map(player => player.number);
         }
     }
-    return null;
+    return "Team not found";
 }
 console.log(playerNumbers("Brooklyn Nets"));
 
 
 function playerStats(playerName) {
-    let game = gameObject();
+    //let game = gameObject();
     for (let team in game) {
         if (game[team].players[playerName]) {
             return game[team].players[playerName];
         }
     }
-    return null;
+    return "Player not found";
 }
 console.log(playerStats("Brook Lopez"));
 
 
 
 function bigShoeRebounds() {
-    let game = gameObject();
+    //let game = gameObject();
     let largestShoe = 0;
     let rebounds = 0;
     for (let team in game) {
@@ -113,7 +116,7 @@ function bigShoeRebounds() {
 console.log(bigShoeRebounds());
 
 function mostPointsScored() {
-    let game = gameObject();
+    //let game = gameObject();
     let topPlayer = "";
     let maxPoints = 0;
     for (let team in game) {
@@ -128,7 +131,7 @@ function mostPointsScored() {
 }
 
 function winningTeam() {
-    let game = gameObject();
+    //let game = gameObject();
     let scores = { home: 0, away: 0 };
     for (let team in game) {
         for (let player in game[team].players) {
@@ -141,7 +144,7 @@ console.log(winningTeam());
 
 
 function playerWithLongestName() {
-    let game = gameObject();
+    //let game = gameObject();
     let longestName = "";
     for (let team in game) {
         for (let player in game[team].players) {
@@ -155,7 +158,7 @@ function playerWithLongestName() {
 console.log(playerWithLongestName());
 
 function doesLongNameStealATon() {
-    let game = gameObject();
+    //let game = gameObject();
     let longestName = playerWithLongestName();
     let maxSteals = 0;
     let topPlayer = "";
