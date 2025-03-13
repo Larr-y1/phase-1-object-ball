@@ -34,7 +34,7 @@ function numPointsScored(playerName) {
     //let game = gameObject();
     for (let team in game) {
         if (game[team].players[playerName]) {
-            return game[team].players[playerName].points;
+            return { player: playerName, points: game[team].players[playerName].points};
         }
     }
     return "Player not found";
@@ -46,7 +46,7 @@ function shoeSize(playerName) {
     //let game = gameObject();
     for (let team in game) {
         if (game[team].players[playerName]) {
-            return game[team].players[playerName].shoe;
+            return { player: playerName, shoeSize: game[team].players[playerName].shoe };
         }
     }
     return "Player not found";
@@ -89,7 +89,7 @@ function playerStats(playerName) {
     //let game = gameObject();
     for (let team in game) {
         if (game[team].players[playerName]) {
-            return game[team].players[playerName];
+            return  {name: playerName, stats: game[team].players[playerName] };
         }
     }
     return "Player not found";
@@ -97,49 +97,43 @@ function playerStats(playerName) {
 console.log(playerStats("Brook Lopez"));
 
 
-
 function bigShoeRebounds() {
-    //let game = gameObject();
     let largestShoe = 0;
+    let playerWithLargestShoe = "";
     let rebounds = 0;
+
     for (let team in game) {
         for (let player in game[team].players) {
             if (game[team].players[player].shoe > largestShoe) {
                 largestShoe = game[team].players[player].shoe;
+                playerWithLargestShoe = player;
                 rebounds = game[team].players[player].rebounds;
             }
         }
     }
-    return rebounds;
+    
+    return {player: playerWithLargestShoe, rebounds };
 }
 
 console.log(bigShoeRebounds());
 
-function mostPointsScored() {
-    //let game = gameObject();
-    let topPlayer = "";
-    let maxPoints = 0;
-    for (let team in game) {
-        for (let player in game[team].players) {
-            if (game[team].players[player].points > maxPoints) {
-                maxPoints = game[team].players[player].points;
-                topPlayer = player;
-            }
-        }
-    }
-    return topPlayer;
-}
 
 function winningTeam() {
-    //let game = gameObject();
     let scores = { home: 0, away: 0 };
+
     for (let team in game) {
         for (let player in game[team].players) {
             scores[team] += game[team].players[player].points;
         }
     }
-    return scores.home > scores.away ? game.home.teamName : game.away.teamName;
+
+    if (scores.home > scores.away) {
+        return { winner: game.home.teamName, points: scores.home };
+    } else {
+        return { winner: game.away.teamName, points: scores.away };
+    }
 }
+
 console.log(winningTeam());
 
 
